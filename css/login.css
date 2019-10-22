@@ -1,0 +1,21 @@
+h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: green;
+    font-size: 5vw;
+}
+
+input{
+    width:500px;
+    height:50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+hr{
+    color:green;
+    margin-bottom: 25px;
+}
+
+form {
+    position: relative;
+}
