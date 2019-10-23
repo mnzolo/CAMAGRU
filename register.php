@@ -22,6 +22,9 @@
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="Register" value="Register">
             </div>
+            <div>
+                <input style="width:100px;background-color:green;" type="submit" name="Send Password Reset Email" value="Send Password Reset Email">
+            </div>
         </form>
     </body>
 </html>

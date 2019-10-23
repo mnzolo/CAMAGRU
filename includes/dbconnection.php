@@ -20,5 +20,5 @@
         echo "ERROR :".$e->getMessage();
     }
 
-    $conn = null;
+    $conn=null;  
 ?>  
