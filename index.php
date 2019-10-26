@@ -1,13 +1,10 @@
 <?php
 
-        include 'includes/checkusers.php';
+        include 'includes/crud.php';
 
-        $person= new User("mnzolo");
-        echo $person->username;
-        $person->setName("lnzolo");
-        echo $person->username;
+       $creation = new user();
+       $creation->create_database(); 
 ?>
-<!--
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +15,7 @@
         <hr>
     </head>
     <body style="background-color:white;">
-        <form method="post" align="center">
+        <form method="post" align="center" action="index.php">
             <div>
                 <input type="text" name="username" placeholder="Please Username">
             </div>
@@ -33,6 +30,5 @@
                 <input style="width:100px;background-color:green;" type="submit" name="Register_" value="Register">
         </form>
     </body>
-</html> 
+</html>
 
--->

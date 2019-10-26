@@ -1,24 +1,34 @@
 <?php
-    try
+    class  Connect{
+    protected $DB_DSN;
+    protected $DB_USER;
+    protected $DB_PASSWORD;
+
+    public function __construct()
     {
-        $DB_DSN = "localhost";
-        $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        $this->DB_DSN = "localhost";
+        $this->DB_USER = "root";
+        $this->DB_PASSWORD = "123456";
+    }
 
-        $conn = new PDO("mysql:host=$DB_DSN", $DB_USER, $DB_PASSWORD);
+    public function network(){
+        try
+        {
 
-        $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $conn = new PDO("mysql:host=$this->DB_DSN", $this->DB_USER, $this->DB_PASSWORD);
 
-        $sql= "CREATE DATABASE CAMAGRU";
+            $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-        $conn->exec($sql);
+            /* $sql= "CREATE DATABASE CAMAGRU"; 
 
-        echo "created Database successfully";
+            $conn->exec($sql);
+        */
+        return $conn;
     }
     catch(PDOEXCEPTION $e)
     {
         echo "ERROR :".$e->getMessage();
     }
-
-    $conn=null;  
+    }
+}
 ?>  
