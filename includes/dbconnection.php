@@ -11,7 +11,8 @@
         $this->DB_PASSWORD = "123456";
     }
 
-    public function network(){
+    public function network()
+    {
         try
         {
 
@@ -19,16 +20,12 @@
 
             $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-            /* $sql= "CREATE DATABASE CAMAGRU"; 
-
-            $conn->exec($sql);
-        */
-        return $conn;
-    }
-    catch(PDOEXCEPTION $e)
-    {
-        echo "ERROR :".$e->getMessage();
-    }
+            return $conn;
+        }
+        catch(PDOEXCEPTION $e)
+        {
+            echo "ERROR :".$e->getMessage();
+        }
     }
 }
 ?>  

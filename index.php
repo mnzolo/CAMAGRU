@@ -1,9 +1,5 @@
 <?php
-
-        include 'includes/crud.php';
-
-       $creation = new user();
-       $creation->create_database(); 
+    include 'includes/datab.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +11,7 @@
         <hr>
     </head>
     <body style="background-color:white;">
-        <form method="post" align="center" action="index.php">
+        <form method="post" align="center" action="includes/mechanism.php">
             <div>
                 <input type="text" name="username" placeholder="Please Username">
             </div>
@@ -31,4 +27,3 @@
         </form>
     </body>
 </html>
-
