@@ -10,12 +10,12 @@
     $tables = new tables();
     $tables->create();
 
-    $object = new Insert();
-    $conn = $object->create();
+     $object = new Insert();
+    $conn = $object->createconn();
     
     $creation = new User($username,$password,$conn);
-    $res = $creation->create_user();
-
+    $creation->create_user();
+    /*
     if ($res == 0)
     {
         echo "login Error";
@@ -23,5 +23,5 @@
     else
     {
         echo "Login Success";
-    }
+    } */
 ?>

@@ -12,12 +12,13 @@
             $this->DB_PASSWORD = "123456";
         }
 
-        public function create()
+        public function createconn()
         {
             try{
                     $conn = new PDO("mysql:host=$this->DB_DSN;dbname=CAMAGRU;", $this->DB_USER, $this->DB_PASSWORD);
 
                     $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                    
 
                     return $conn;
                 }
@@ -46,12 +47,12 @@ class User {
     
      public function create_user()
     {
-        if ($this->username == NULL || $this->password == NULL)
+        /* if ($this->username == NULL || $this->password == NULL)
         {
             return (0);
         }
         else
-        {
+        { */
             //$sql="SELECT username FROM USERS";
             ///* $result = */ $this->conn->exec($sql);
 
@@ -64,14 +65,14 @@ class User {
                 }
             }
             */
-            $sql="INSERT INTO USERS (username,passwords)
-            values($this->username, $this->password)
-            ";
 
+            $sql="INSERT INTO USERS (email,username,passwords)
+                VALUES ('mnzolo@gmail.com',$this->username,$this->password)
+            ";
             $this->conn->exec($sql);
 
-            return (1);
-        }
+            //return (1);
+    //}
     }
 
     /* public function Read()
