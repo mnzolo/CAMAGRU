@@ -1,5 +1,6 @@
 <?php
     include  'crud.php';
+    include  'connection.php';
     
     //session_start();
 
@@ -9,12 +10,13 @@
     
     $tables = new tables();
     $tables->create();
-
-     $object = new Insert();
-    $conn = $object->createconn();
+    
+    $connection = new Insert();
+    $conn = $connection->createconn();
     
     $creation = new User($username,$password,$conn);
     $creation->create_user();
+   
     /*
     if ($res == 0)
     {

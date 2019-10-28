@@ -1,78 +1,67 @@
 <?php
 
-    class   Insert{
-    protected $DB_DSN;
-    protected $DB_USER;
-    protected $DB_PASSWORD;
-
-        public function __construct()
-        {
-            $this->DB_DSN = "localhost";
-            $this->DB_USER = "root";
-            $this->DB_PASSWORD = "123456";
-        }
-
-        public function createconn()
-        {
-            try{
-                    $conn = new PDO("mysql:host=$this->DB_DSN;dbname=CAMAGRU;", $this->DB_USER, $this->DB_PASSWORD);
-
-                    $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-                    
-
-                    return $conn;
-                }
-            catch(PDOEXCEPTION $e)
-                {
-                    echo "ERROR:".$e->getMessage();
-                }
-        }
-}
-
-
-class User {
+class User{
     
     protected $conn;
     //protected $email;
     protected $username;
     protected $password;
 
-    public function __construct($username,$password,$conn)
+    public function __construct($email,$username,$password,$conn)
     {  
-        $this->conn = $conn;
-        //$this->email = $email;
+        $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+        $this->conn = $conn;
     }
     
      public function create_user()
     {
-        /* if ($this->username == NULL || $this->password == NULL)
+        if ($this->email == NULL)
         {
+            echo "INVALID EMAIL";
+            //header ("Location: ../register.php");
+            return (0);
+        }
+        else if($this->username == NULL)
+        {
+            echo "$this->username";
+            echo "INVALID USERNAME";
+            //header ("Location: ../register.php");
+            return (0);
+        }
+        else if($this->password == NULL)
+        {
+            echo "INVALID PASSWORD";
+            //header ("Location: ../register.php");
             return (0);
         }
         else
-        { */
-            //$sql="SELECT username FROM USERS";
-            ///* $result = */ $this->conn->exec($sql);
+        {
+            $sql="SELECT * FROM USERS";
+            $result = $this->conn->query($sql);
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $value = $result->fetch();
 
-            //echo/*  print_r($result); */ "tables";
-            /* foreach ($result as $value)
+            //echo print_r($value)."mtho";
+            foreach ($result as $value)
             {
-                if ($value = $this->username)
+                switch($value)
                 {
-                    return (0);
+                    case email:
+                        echo $value;
                 }
             }
-            */
-
-            $sql="INSERT INTO USERS (email,username,passwords)
-                VALUES ('mnzolo@gmail.com',$this->username,$this->password)
-            ";
-            $this->conn->exec($sql);
+    
+ 
+            /* $query="INSERT INTO USERS (email,username,passwords)
+                VALUES ('$this->email','$this->username','$this->password');
+            "; 
+  
+            $this->conn->exec($query); */
 
             //return (1);
-    //}
+        }
     }
 
     /* public function Read()
