@@ -1,68 +1,43 @@
-<?php
-
+<?php  
 class User{
-    
     protected $conn;
     //protected $email;
     protected $username;
     protected $password;
-
-    public function __construct($email,$username,$password,$conn)
+    protected $token; 
+    
+    public function __construct($email,$username,$password,$token,$conn)
     {  
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+        $this->token = $token;
         $this->conn = $conn;
     }
     
-     public function create_user()
+    public function create_user()
     {
-        if ($this->email == NULL)
-        {
-            echo "INVALID EMAIL";
-            //header ("Location: ../register.php");
-            return (0);
-        }
-        else if($this->username == NULL)
-        {
-            echo "$this->username";
-            echo "INVALID USERNAME";
-            //header ("Location: ../register.php");
-            return (0);
-        }
-        else if($this->password == NULL)
-        {
-            echo "INVALID PASSWORD";
-            //header ("Location: ../register.php");
-            return (0);
-        }
-        else
-        {
-            $sql="SELECT * FROM USERS";
+            $sql="SELECT username FROM USERS";
             $result = $this->conn->query($sql);
             $result->setFetchMode(PDO::FETCH_ASSOC);
-            $value = $result->fetch();
+            $value = $result->fetchAll();
 
-            //echo print_r($value)."mtho";
-            foreach ($result as $value)
+            foreach($value as $key)
             {
-                switch($value)
+                if ($key["username"] == $this->username)
                 {
-                    case email:
-                        echo $value;
+                    echo "Invalid Username";
+                    return (0);
                 }
             }
-    
- 
-            /* $query="INSERT INTO USERS (email,username,passwords)
-                VALUES ('$this->email','$this->username','$this->password');
+            $query="INSERT INTO USERS (email,username,passwords,tokens,verified)
+                VALUES ('$this->email','$this->username','$this->password','$this->token','0');
             "; 
   
-            $this->conn->exec($query); */
-
-            //return (1);
+            $this->conn->exec($query);
+            //mail("mthothonzolo@gmail","Email Verification", "click on the <a href="//localhost:8080/crud/confirmemail.php">link</a>)
+            return (1); 
         }
-    }
 
     /* public function Read()
     {
@@ -108,7 +83,9 @@ class Tables{
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         email varchar(50) NOT NULL,
                         username varchar(50) NOT NULL,
-                        passwords varchar(50) NOT NULL
+                        passwords varchar(50) NOT NULL,
+                        tokens varchar(50) NOT NULL,
+                        verified varchar(1) DEFAULT '0'
                     )";
 
                     $conn->exec($sql);
@@ -121,3 +98,4 @@ class Tables{
                 $conn = null;
         }
 }
+?>
