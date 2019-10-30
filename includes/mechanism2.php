@@ -33,9 +33,9 @@
     }
     else
     {
-        $email1 = hash(sha1,$email);
-        $password1 = hash(sha1, $password);
-        $token = strsub($email1, 0 ,10);
+        $email1 = hash("sha1",$email);
+        $password1 = hash("sha1", $password);
+        $token = substr($email1, 0 ,10);
 
         echo $token;
         /*
