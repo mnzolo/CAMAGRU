@@ -33,12 +33,10 @@
     }
     else
     {
-        $email1 = hash("sha1",$email);
-        $password1 = hash("sha1", $password);
-        $token = substr($email1, 0 ,10);
+        $email1 = $email;
+        $password1 = password_hash($password, PASSWORD_DEFAULT);
+        $token = substr(sha1($email), 0 ,10);
 
-        echo $token;
-        /*
         $tables = new tables();
         $tables->create();
     
@@ -50,8 +48,17 @@
 
         if ($res == 1)
         {
-            echo "Email Has been sent to account";
-        } */
+            $sentemail = mail("$email1","Email Verification CAMAGRU", "click on the link to Verify <a href='http://localhost:8080/crud/confirmemail.php?token=$token&&user=$username'>Account</a>");
+            
+            if ($sentemail)
+            {
+                echo "Email Has been sent to account";
+            }
+            else 
+            {
+                echo "Email Not Sent";
+            }
+        }
         /* if (!$res)
         {
             $error = "Invalid";

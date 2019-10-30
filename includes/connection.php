@@ -8,7 +8,7 @@ class   Insert{
         {
             $this->DB_DSN = "localhost";
             $this->DB_USER = "root";
-            $this->DB_PASSWORD = "";
+            $this->DB_PASSWORD = "123456";
         }
 
         public function createconn()

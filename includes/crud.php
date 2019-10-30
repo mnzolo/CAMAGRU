@@ -30,32 +30,65 @@ class User{
                     return (0);
                 }
             }
-            $query="INSERT INTO USERS (email,username,passwords,tokens,verified)
-                VALUES ('$this->email','$this->username','$this->password','$this->token','0');
+            $query="INSERT INTO USERS (email,username,passwords,tokens)
+                VALUES ('$this->email','$this->username','$this->password','$this->token');
             "; 
   
             $this->conn->exec($query);
-            //mail("mthothonzolo@gmail","Email Verification", "click on the <a href="//localhost:8080/crud/confirmemail.php">link</a>)
-            return (1); 
+           
+            return (1);
+        }
+    
+    public function validate_user()
+    {
+        $sq="SELECT * FROM USERS WHERE username='$this->username'";
+        $res = $this->conn->query($sq);
+        $res->setFetchMode(PDO::FETCH_ASSOC);
+        $val = $res->fetchall();
+
+        foreach($val as $key)
+        {
+            $user = $key['username'];
+            $pass = $key['passwords'];
+        }
+        $paschek = $password;
+        /* echo $paschek;
+        echo $pass; */
+        if ($user == $this->username)
+        {
+            if(password_hash($this->password,$pass))
+            {
+                echo "User Succesfully Logged IN";
+            }
+        }
+        else
+        {
+            echo "Invalid User Details : create account or log_out";
+        }
+    }
+
+    public function validation()
+    {
+        $sqe="SELECT * FROM USERS WHERE tokens='$this->token'";
+        $mail = $this->conn->query($sqe);
+        $mail->setFetchMode(PDO::FETCH_ASSOC);
+        $vmai = $mail->fetchall();
+
+        foreach ($vmai as $key)
+        {
+            if ($vmai['verified'] == '1')
+            {
+                echo "LINK_ALREADY_USED or Go_TO_Registration_";
+                //header("location: register.php");
+                return  (0);
+            }
         }
 
-    /* public function Read()
-    {
-       $result = $this->conn->exec("query");
-        ehco "result";
-    }
+        $sql1="UPDATE USERS SET verified='1' where username='$this->username'";
+        $this->conn->exec($sql1);
 
-    public function Update()
-    {
-        $this->conn->exec("query");
-        echo "update";
+        echo "Email Verified GO To LOG_IN_";
     }
-
-    public function Delete()
-    {
-        $this->conn->exec("query");
-        echo "deleted";
-    } */
 }
 
 class Tables{
@@ -69,7 +102,7 @@ class Tables{
         {
             $this->DB_DSN = "localhost";
             $this->DB_USER = "root";
-            $this->DB_PASSWORD = "";
+            $this->DB_PASSWORD = "123456";
         }
 
         public function create()
