@@ -1,4 +1,8 @@
-<?php  
+<?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 class User{
     protected $conn;
     //protected $email;
@@ -17,7 +21,8 @@ class User{
     
     public function create_user()
     {
-            $sql="SELECT username FROM USERS";
+        try {
+            $sql="SELECT username FROM users";
             $result = $this->conn->query($sql);
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $value = $result->fetchAll();
@@ -29,15 +34,25 @@ class User{
                     echo "Invalid Username";
                     return (0);
                 }
+                else if ($key["email"] == $this->email)
+                {
+                    echo "Invalid email";
+                    return (0);
+                }
             }
-            $query="INSERT INTO USERS (email,username,passwords,tokens)
-                VALUES ('$this->email','$this->username','$this->password','$this->token');
-            "; 
+
+              $que="INSERT INTO users (email, username, passwords, tokens, verified) 
+              
+              VALUES ('$this->email','$this->username','$this->password','$this->token', 0)"; 
   
-            $this->conn->exec($query);
-           
+            $this->conn->exec($que);
+        
+        } catch ( PDOException $e ) {
+			die( $e->getMessage() );
+		}
+
             return (1);
-        }
+    }
     
     public function validate_user()
     {
@@ -50,16 +65,12 @@ class User{
         {
             $user = $key['username'];
             $pass = $key['passwords'];
+            $verify = $key['verified'];
         }
-        $paschek = $password;
-        /* echo $paschek;
-        echo $pass; */
-        if ($user == $this->username)
+
+        if ($user == $this->username && password_verify($this->password,$pass) && $verify == 1)
         {
-            if(password_hash($this->password,$pass))
-            {
-                echo "User Succesfully Logged IN";
-            }
+            echo "User Succesfully Logged IN";
         }
         else
         {
@@ -76,7 +87,7 @@ class User{
 
         foreach ($vmai as $key)
         {
-            if ($vmai['verified'] == '1')
+            if ($key['verified'] == '1')
             {
                 echo "LINK_ALREADY_USED or Go_TO_Registration_";
                 //header("location: register.php");
@@ -89,6 +100,31 @@ class User{
 
         echo "Email Verified GO To LOG_IN_";
     }
+
+    //in_the_making
+
+    /* public function reset()
+    {
+        $sqi="SELECT * FROM USERS WHERE email='$this->email'";
+        $reset = $this->conn->query($sqi);
+        $reset->setFetchMode(PDO::FETCH_ASSOC);
+        $rem = $reset->fetchall();
+
+        foreach ($rem as $key)
+        {
+            if($key["email"] == $this->email && password_verify($this->password,$key["passwords"]))
+            {
+                $sp="UPDATE USERS SET passwords='$this->password2' WHERE email='$this->email'";
+                $this->conn->exec($sp);
+
+                return (1);
+            }
+            else
+            {
+                echo "PLEASE ENTER VALID INFORMATION";
+            }
+        }
+    } */
 }
 
 class Tables{
@@ -116,7 +152,7 @@ class Tables{
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         email varchar(50) NOT NULL,
                         username varchar(50) NOT NULL,
-                        passwords varchar(50) NOT NULL,
+                        passwords varchar(255) NOT NULL,
                         tokens varchar(50) NOT NULL,
                         verified varchar(1) DEFAULT '0'
                     )";

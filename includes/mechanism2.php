@@ -1,4 +1,5 @@
 <?php
+    //register
      include  'crud.php';
     include  'connection.php';
    /*  include '../register.php'; */
@@ -36,16 +37,16 @@
         $email1 = $email;
         $password1 = password_hash($password, PASSWORD_DEFAULT);
         $token = substr(sha1($email), 0 ,10);
-
+        
         $tables = new tables();
         $tables->create();
-    
+          
         $connection = new Insert();
         $conn = $connection->createconn();
-    
+        
         $creation = new User($email1,$username,$password1,$token,$conn);
         $res = $creation->create_user();
-
+        
         if ($res == 1)
         {
             $sentemail = mail("$email1","Email Verification CAMAGRU", "click on the link to Verify <a href='http://localhost:8080/crud/confirmemail.php?token=$token&&user=$username'>Account</a>");
@@ -59,6 +60,7 @@
                 echo "Email Not Sent";
             }
         }
+
         /* if (!$res)
         {
             $error = "Invalid";
