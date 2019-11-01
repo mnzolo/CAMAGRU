@@ -8,15 +8,17 @@ class User{
     //protected $email;
     protected $username;
     protected $password;
+    protected $password2;
     protected $token; 
     
-    public function __construct($email,$username,$password,$token,$conn)
+    public function __construct($email,$username,$password,$token,$conn,$password2)
     {  
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
         $this->token = $token;
         $this->conn = $conn;
+        $this->password2 = $password2;
     }
     
     public function create_user()
@@ -103,7 +105,7 @@ class User{
 
     //in_the_making
 
-    /* public function reset()
+    /* public function reset_user()
     {
         $sqi="SELECT * FROM USERS WHERE email='$this->email'";
         $reset = $this->conn->query($sqi);
@@ -114,14 +116,14 @@ class User{
         {
             if($key["email"] == $this->email && password_verify($this->password,$key["passwords"]))
             {
-                $sp="UPDATE USERS SET passwords='$this->password2' WHERE email='$this->email'";
+                $sp="UPDATE USERS SET passwords='password_hash($this->password2, PASSWORD_DEFAULT' WHERE email='$this->email'";
                 $this->conn->exec($sp);
-
                 return (1);
             }
             else
             {
                 echo "PLEASE ENTER VALID INFORMATION";
+                return (0);
             }
         }
     } */
