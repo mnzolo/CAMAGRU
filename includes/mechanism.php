@@ -10,6 +10,7 @@
     $password1 = $_POST['password'];
     $email1 = NULL;
     $token = NULL;
+    $newpassword = NULL;
 
     if ($username == NULL)
     {
@@ -27,7 +28,7 @@
         $connection = new Insert();
         $conn = $connection->createconn();
 
-        $creation = new User($email1,$username,$password1,$token,$conn);
+        $creation = new User($email1,$username,$password1,$token,$conn,$newpassword);
         $creation->validate_user();
    
     /*

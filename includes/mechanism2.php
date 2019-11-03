@@ -44,7 +44,7 @@
         $connection = new Insert();
         $conn = $connection->createconn();
         
-        $creation = new User($email1,$username,$password1,$token,$conn);
+        $creation = new User($email1,$username,$password1,$token,$conn,$password2);
         $res = $creation->create_user();
         
         if ($res == 1)

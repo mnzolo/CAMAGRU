@@ -140,7 +140,7 @@ class Tables{
         {
             $this->DB_DSN = "localhost";
             $this->DB_USER = "root";
-            $this->DB_PASSWORD = "123456";
+            $this->DB_PASSWORD =  "";
         }
 
         public function create()
