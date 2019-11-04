@@ -25,9 +25,9 @@
         <form action="register.php">
                 <input style="width:100px;background-color:green;" type="submit" name="Register_" value="Register">
         </form>
-        <form method="post" action="resetpassword.php">
+        <form method="post" action="forgotpassword.php">
             <div>
-                <input style="width:100px;background-color:green;" type="submit" name="Send Password Reset Email" value="Password Reset">
+                <input style="width:100px;background-color:green;" type="submit" name="Send Password Reset Email" value="forgot password">
             </div>
         </form>
     </body>

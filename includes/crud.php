@@ -205,4 +205,20 @@ class   fetch
         }
     }
 }
+
+class   forgets{
+    protected  $conn;
+    protected  $email;
+
+    public function __construct($conn, $email)
+    {
+        $this->conn = $conn;
+        $this->email = $email;
+    }
+
+    public function gorgetting()
+    {
+        $sql="";
+    }
+}
 ?>

@@ -11,8 +11,11 @@
 
     $objects = new fetch($conn,$username);
     $result = $objects->getstuff();
-    
-//$conn = null;
+
+    $email = $result["email"];
+    $username = $result["username"];
+
+    $conn = null;
 ?>
 
 <html>
@@ -25,31 +28,30 @@
     <body style="background-color:white;">
         <form method="post" align="center">
             <div>
-                <!-- <input type="text" name="email" placeholder="Please Enter Email"> -->
                 <?php
-                    foreach($result as $key)
-                    {
-                        echo $key["email"];
-                    }
+                    echo $email."<br/>"."<br/>";
                 ?>
             </div>
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Email" value="Reset Email">
             </div>
+        </form>
+        <form align="center">
             <div>
-                <!-- <input type="text" name="username" placeholder="Please Enter Username"> -->
                 <?php
-                        foreach($result as $key)
-                        {
-                            echo $key["username"];
-                        }
+                    echo $username."<br/>"."<br/>";
                 ?>
             </div>
             <div>    
                 <input style="width:100px;background-color:green;" type="submit" name="Reset username" value="Reset username">
             </div>
         </form>
-        <form action="">
+        <form action="resetpassword.php" align="center">
+            <div>
+                <?php
+                    echo "**********";
+                ?>
+            </div>
              <div>   
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Password" value="Reset password">
             </div>
