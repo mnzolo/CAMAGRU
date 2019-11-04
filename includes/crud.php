@@ -205,8 +205,9 @@ class   fetch
         }
     }
 }
+//not done
 
-class   forgets{
+/* class   forgets{
     protected  $conn;
     protected  $email;
 
@@ -220,5 +221,5 @@ class   forgets{
     {
         $sql="";
     }
-}
+} */
 ?>
