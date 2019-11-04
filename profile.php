@@ -1,10 +1,18 @@
 <?php
-
-    include 'profilemech.php';
+    include  'includes/crud.php';
+    include  'includes/connection.php';
 
     session_start();
 
-    echo $result;
+    $username = $_SESSION["user"];
+
+    $fetch = new Insert();
+    $conn = $fetch->createconn();
+
+    $objects = new fetch($conn,$username);
+    $result = $objects->getstuff();
+    
+//$conn = null;
 ?>
 
 <html>
@@ -17,7 +25,13 @@
     <body style="background-color:white;">
         <form method="post" align="center">
             <div>
-                <input type="text" name="email" placeholder="Please Enter Email">
+                <!-- <input type="text" name="email" placeholder="Please Enter Email"> -->
+                <?php
+                    foreach($result as $key)
+                    {
+                        echo $key["email"];
+                    }
+                ?>
             </div>
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Email" value="Reset Email">
@@ -25,15 +39,15 @@
             <div>
                 <!-- <input type="text" name="username" placeholder="Please Enter Username"> -->
                 <?php
-                        echo $_SESSION["user"]; 
+                        foreach($result as $key)
+                        {
+                            echo $key["username"];
+                        }
                 ?>
             </div>
             <div>    
                 <input style="width:100px;background-color:green;" type="submit" name="Reset username" value="Reset username">
             </div>
-            <div>
-                <input type="text" name="password2" placeholder="Please Confirm Password">
-             </div>
         </form>
         <form action="">
              <div>   

@@ -171,7 +171,38 @@ class Tables{
         }
 }
 
-class   fetch{
+class   fetch
+{
+    protected $conn;
+    protected $username;
+    protected $info;
     
+    public function __construct($conn,$username)
+    {
+        $this->conn = $conn;
+        $this->username = $username;
+        $this->info = array();
+    }
+    
+    public  function getstuff()
+    {
+        try{
+            $sql="SELECT * FROM USERS WHERE username='$this->username'";
+            $result = $this->conn->query($sql);
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $value = $result->fetchall();
+
+            foreach($value as $key)
+            {
+                $this->info = array("username" => $key["username"], "email" => $key["email"]);
+            }
+            
+            return ($this->info);
+        }
+        catch(PDOEXCEPTION $e)
+        {
+            echo "Error".$e->getMessage();
+        }
+    }
 }
 ?>
