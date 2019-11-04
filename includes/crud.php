@@ -72,11 +72,11 @@ class User{
 
         if ($user == $this->username && password_verify($this->password,$pass) && $verify == 1)
         {
-            echo "User Succesfully Logged IN";
+           return(1);
         }
         else
         {
-            echo "Invalid User Details : create account or log_out";
+            return(0);
         }
     }
 
@@ -105,18 +105,19 @@ class User{
 
     //in_the_making
 
-    /* public function reset_user()
+    public function reset_user()
     {
         $sqi="SELECT * FROM USERS WHERE email='$this->email'";
         $reset = $this->conn->query($sqi);
         $reset->setFetchMode(PDO::FETCH_ASSOC);
         $rem = $reset->fetchall();
-
+        $hash = password_hash($this->password2, PASSWORD_DEFAULT);
+        
         foreach ($rem as $key)
         {
             if($key["email"] == $this->email && password_verify($this->password,$key["passwords"]))
             {
-                $sp="UPDATE USERS SET passwords='password_hash($this->password2, PASSWORD_DEFAULT' WHERE email='$this->email'";
+                $sp="UPDATE USERS SET passwords='$hash' WHERE email='$this->email'";
                 $this->conn->exec($sp);
                 return (1);
             }
@@ -126,7 +127,7 @@ class User{
                 return (0);
             }
         }
-    } */
+    }
 }
 
 class Tables{
@@ -140,7 +141,7 @@ class Tables{
         {
             $this->DB_DSN = "localhost";
             $this->DB_USER = "root";
-            $this->DB_PASSWORD =  "";
+            $this->DB_PASSWORD =  "123456";
         }
 
         public function create()
@@ -168,5 +169,9 @@ class Tables{
 
                 $conn = null;
         }
+}
+
+class   fetch{
+    
 }
 ?>

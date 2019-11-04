@@ -1,6 +1,6 @@
 <?php
     $upload_dir = "uploads/";
-    $upload_path = $upload_dir.basename($_FILE$S["takeimage"]["tmp_name"]);
+    $upload_path = $upload_dir.basename($_FILES["takeimage"]["tmp_name"]);
 
     if ($_POST["takeimage"] == "uploadimage")
    {

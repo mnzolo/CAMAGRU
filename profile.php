@@ -1,3 +1,12 @@
+<?php
+
+    include 'profilemech.php';
+
+    session_start();
+
+    echo $result;
+?>
+
 <html>
     <head>
         <title>CAMAGRU</title>
@@ -14,7 +23,10 @@
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Email" value="Reset Email">
             </div>
             <div>
-                <input type="text" name="username" placeholder="Please Enter Username">
+                <!-- <input type="text" name="username" placeholder="Please Enter Username"> -->
+                <?php
+                        echo $_SESSION["user"]; 
+                ?>
             </div>
             <div>    
                 <input style="width:100px;background-color:green;" type="submit" name="Reset username" value="Reset username">
@@ -22,6 +34,8 @@
             <div>
                 <input type="text" name="password2" placeholder="Please Confirm Password">
              </div>
+        </form>
+        <form action="">
              <div>   
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Password" value="Reset password">
             </div>

@@ -2,21 +2,23 @@
     include 'crud.php';
     include 'connection.php';
 
-    $email = $_POST['email']; 
-    $olspassword = $_POST['OLD_PASSWORD'];
-    $newpassword = $_POST['NEW_PASSWORD'];
+    $email1 = $_POST["email"]; 
+    $oldpassword = $_POST["OLD_PASSWORD"];
+    $newpassword = $_POST["NEW_PASSWORD"];
+    $username = NULL;
+    $token = NULL;
 
-    if ($email == NULL)
+    if ($email1 == NULL)
     {
             echo "INVALID EMAIL";
     }
-    else if($username == NULL)
+    else if($oldpassword == NULL)
     {
-            echo "INVALID USERNAME";
+            echo "INVALID OLD_PASSWORD";
     }
-    else if($password == NULL)
+    else if($newpassword == NULL)
     {
-            echo "INVALID PASSWORD";
+            echo "INVALID NEW_PASSWORD";
     }
     else
     {
