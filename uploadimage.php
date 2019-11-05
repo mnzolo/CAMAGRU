@@ -7,12 +7,12 @@
         <hr>
     </head>
     <body style="background-color:white;">
-    <form method="post" enctype="multipart/form-data" action="uploads.php">
+    <form method="post" enctype="multipart/form-data" action="includes/uploads.php">
         <div>
             <input style="background-color: green" type="file" name="takeimage" value="uploadimage">
         </div>
         <div>
-            <input style="background-color: green" type="submit" name="takeimage"   value="uplaodimage">
+            <input style="background-color: green" type="submit" name="takeimages"   value="uplaodimages">
         </div>
     </form>
         <!-- <p>Uploads_Gallery_</p>

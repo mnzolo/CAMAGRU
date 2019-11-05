@@ -1,10 +1,14 @@
 <?php
-    $email1 = $_POST["email1"];
+
+    include  'crud.php';
+    include  'connection.php';
+
+    $email = $_POST["email1"];
     $email2 = $_POST["email2"];
     $token = NULL;
     $password = $email2;
 
-    if ($email1 == NULL || $email2 == NULL)
+    if ($email == NULL || $email2 == NULL)
     {
         echo "Invalid Email Address";
     }
@@ -15,10 +19,22 @@
         
         $forgot = new forgets($conn,$email,$token,$password);
         $res = $forgot->updateemail();
+        
+        $token = $res["token"];
+        $username = $res["user"];
 
         if ($res != NULL)
         {
             $send = mail("$email2","CAMAGRU EMAIL VERIFICATION","CAMAGRU EMAIL VERIFY <a href='http://localhost:8080/crud/confirmemail.php?token=$token&&user=$username'>Account</a>");
+
+            if ($send)
+            {
+                echo "EMAIL HAS BEEN SENT";
+            }
+            else
+            {
+                echo "INVALID EMAIL";
+            }
         }
         else if ($res == 0)
         {

@@ -30,16 +30,16 @@
 
         $creation = new User($email1,$username,$password1,$token,$conn,$newpassword);
         $res = $creation->validate_user();
-        
+
     if ($res == 0)
     {
         echo "login Error";
     }
     else
     {
-        header("location: ../profile.php");
         $_SESSION["user"] = $username;
         $_SESSION["password"] = $password1;
+        header("location: ../profile.php");
     }
 }
 ?>

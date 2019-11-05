@@ -24,7 +24,7 @@ class User{
     public function create_user()
     {
         try {
-            $sql="SELECT username FROM users";
+            $sql="SELECT * FROM users";
             $result = $this->conn->query($sql);
             $result->setFetchMode(PDO::FETCH_ASSOC);
             $value = $result->fetchAll();
@@ -36,16 +36,20 @@ class User{
                     echo "Invalid Username";
                     return (0);
                 }
-                else if ($key["email"] == $this->email)
+            }
+
+            foreach($value as $key)
+            {
+                if ($key["email"] == $this->email)
                 {
                     echo "Invalid email";
                     return (0);
                 }
             }
 
-              $que="INSERT INTO users (email, username, passwords, tokens, verified) 
+            $que="INSERT INTO users (email, username, passwords, tokens, verified) 
               
-              VALUES ('$this->email','$this->username','$this->password','$this->token', 0)"; 
+            VALUES ('$this->email','$this->username','$this->password','$this->token', 0)"; 
   
             $this->conn->exec($que);
         
@@ -65,9 +69,9 @@ class User{
 
         foreach($val as $key)
         {
-            $user = $key['username'];
-            $pass = $key['passwords'];
-            $verify = $key['verified'];
+            $user = $key["username"];
+            $pass = $key["passwords"];
+            $verify = $key["verified"];
         }
 
         if ($user == $this->username && password_verify($this->password,$pass) && $verify == 1)
@@ -281,6 +285,31 @@ class   forgets{
                 $this->conn->exec($sql);
 
                 return ($this->info);
+            }
+        }
+    }
+    catch(PDOEXCEPTION $e)
+    {
+        echo "Error".$e->getMessage();
+    }
+}
+
+public function updateuser()
+    {
+        try{
+        $sql="SELECT * FROM USERS WHERE username='$this->email'";
+        $result = $this->conn->query($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $value = $result->fetchall();
+        
+        foreach($value as $val)
+        {
+            if ($val["username"] == $this->email)
+            {
+                $sql="UPDATE USERS SET username='$this->password' WHERE username='$this->email'";
+                $this->conn->exec($sql);
+
+                return (1);
             }
         }
     }

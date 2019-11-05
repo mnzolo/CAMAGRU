@@ -36,7 +36,7 @@
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Email" value="Reset Email">
             </div>
         </form>
-        <form align="center">
+        <form align="center" action="resetuser.php">
             <div>
                 <?php
                     echo $username."<br/>"."<br/>";
