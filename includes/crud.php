@@ -205,21 +205,90 @@ class   fetch
         }
     }
 }
-//not done
 
-/* class   forgets{
+class   forgets{
     protected  $conn;
     protected  $email;
+    protected  $token;
+    protected  $password;
+    protected  $info;
 
-    public function __construct($conn, $email)
+    public function __construct($conn, $email,$token,$password)
     {
         $this->conn = $conn;
         $this->email = $email;
+        $this->token = $token;
+        $this->password = $password;
+        $this->info = array();
     }
 
     public function gorgetting()
     {
-        $sql="";
+        $sql="SELECT * FROM USERS WHERE email='$this->email'";
+        $result = $this->conn->query($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $value = $result->fetchall();
+
+        foreach($value as $key)
+        {
+            $this->token = $key["tokens"];
+        }
+        foreach($value as $key)
+        {
+            if($key["email"] == $this->email)
+            {
+                return ($this->token);
+            }
+            else
+            {
+                return (0);
+            }
+        }
     }
-} */
+
+    public function updatepass()
+    {
+        try{
+        $sql="UPDATE USERS SET passwords='password_hash($this->password,PASSWORD_DEFAULT)' WHERE tokens='$this->token'";
+        $this->conn->exec($sql);
+
+            return(1);
+        }
+        catch(PDOEXCEPTION $e)
+        {
+            echo "Error".$e->getMessage();
+        }
+    }
+
+    public function updateemail()
+    {
+        try{
+        $sql="SELECT * FROM USERS WHERE email='$this->email'";
+        $result = $this->conn->query($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $value = $result->fetchall();
+        
+        foreach($value as $key)
+        {
+            $this->info=array("token" => $key["tokens"], "user" => $key["username"]);
+        }
+
+        foreach($value as $val)
+        {
+            if ($val["email"] == $this->email)
+            {
+                $sql="UPDATE USERS SET email='$this->password', verified='0' WHERE email='$this->email'";
+                $this->conn->exec($sql);
+
+                return ($this->info);
+            }
+        }
+    }
+    catch(PDOEXCEPTION $e)
+    {
+        echo "Error".$e->getMessage();
+    }
+}
+
+}
 ?>

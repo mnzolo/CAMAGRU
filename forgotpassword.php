@@ -6,8 +6,8 @@
         <h1 align="center" >FORGOT_PASSWORD_</h1>
         <hr>
     </head>
-    <body style="background-color: white" action="includes/forgot.php">
-    <form method="post">
+    <body style="background-color: white">
+    <form method="post" action="includes/forgot.php">
         <input type="text" name="email" placeholder="PLEASE_ENTER_YOUR_EMAIL_">
         <input style="width:100px;background-color:green;" type="submit" name="emailsub" value="SEND_EMAIL_">
     </form>

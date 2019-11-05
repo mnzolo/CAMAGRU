@@ -26,7 +26,7 @@
         <hr>
     </head>
     <body style="background-color:white;">
-        <form method="post" align="center">
+        <form method="post" align="center" action="resetemailprof.php">
             <div>
                 <?php
                     echo $email."<br/>"."<br/>";
