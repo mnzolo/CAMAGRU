@@ -9,14 +9,13 @@
     <body style="background-color:white;">
     <form method="post" enctype="multipart/form-data" action="includes/uploads.php">
         <div>
-            <input style="background-color: green" type="file" name="takeimage" value="uploadimage">
+            <input style="background-color: green" type="file" name="takeimage">
         </div>
         <div>
-            <input style="background-color: green" type="submit" name="takeimages"   value="uplaodimages">
+            <input style="background-color: green" type="submit" name="uplaodimages"   value="uplaodimages">
         </div>
     </form>
-        <!-- <p>Uploads_Gallery_</p>
-        <div>
-        <div>!-->
+   <!--  <div>
+    </div> -->
     </body>
 </html>
