@@ -165,6 +165,17 @@ class Tables{
                     )";
 
                     $conn->exec($sql);
+
+                    $sqe="CREATE TABLE IF NOT EXISTS IMAGES(
+                        id INT(10) AUTO_INCREMENT PRIMARY KEY,
+                        email varchar(50) NOT NULL,
+                        username varchar(50) NOT NULL,
+                        passwords varchar(255) NOT NULL,
+                        tokens varchar(50) NOT NULL,
+                        verified varchar(1) DEFAULT '0'
+                    )";
+
+                    $conn->exec($sql);
                 }
             catch(PDOEXCEPTION $e)
                 {

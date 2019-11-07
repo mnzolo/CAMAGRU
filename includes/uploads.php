@@ -1,4 +1,7 @@
 <?php
+
+    include 'crud.php';
+
     $upload_dir = "../uploads/";
     $upload_path = $upload_dir.basename($_FILES["takeimage"]["name"]);
 
@@ -8,6 +11,9 @@
         {
             echo "image uploaded successfully";
             echo "<img style='width:500px;height:400px;' src='$upload_path'>";
+
+            $add = new image($upload_path);
+            $res = $add->uploadpic();
         }
         else
         {
