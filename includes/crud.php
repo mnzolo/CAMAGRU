@@ -3,6 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
+
 class User{
     protected $conn;
     //protected $email;
@@ -145,7 +147,7 @@ class Tables{
         {
             $this->DB_DSN = "localhost";
             $this->DB_USER = "root";
-            $this->DB_PASSWORD =  "123456";
+            $this->DB_PASSWORD =  "";
         }
 
         public function create()
@@ -331,13 +333,29 @@ public function updateuser()
 
 class image{
 
-    public function construct($imgurl)
+    protected $imgurl;
+    protected $username;
+
+    public function construct($conn, $imgurl)
     {
-        
+        $imgurl = $imgurl;
+        $username = $_SESSION["user"];
     }
     public function uploadpic()
     {
+        try{
+        $sql="INSERT INTO IMAGES (imgurl,token)
+        VALUES ($this->imgurl,$this->username)
+        ";
 
+        $this->conn->exec($sql);
+
+        return(1);
+        }
+        catch(PDOEXCEPTION $e)
+        {
+            echo "Error".$e->getMessage();
+        }
     }
 }
 

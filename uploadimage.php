@@ -1,3 +1,8 @@
+<?php
+   include  'includes/connection.php';
+   session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +20,24 @@
             <input style="background-color: green" type="submit" name="uplaodimages"   value="uplaodimages">
         </div>
     </form>
-   <!--  <div>
-    </div> -->
+    <div>
+        <?php
+
+                $connection = new Insert();
+                $conn = $connection->createconn();
+
+                $username = $_SESSION["User"];
+
+                $sql="SELECT * FROM IMAGES WHERE token='$username'
+                ";
+
+                $result = $conn->query($sql);
+                $result->setFetchMode(PDO::FETCH_ASSOC);
+                $images = $result->fetchall();
+
+                print_r($images);
+
+        ?>
+    </div>
     </body>
 </html>

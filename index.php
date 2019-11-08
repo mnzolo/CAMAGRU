@@ -7,7 +7,13 @@
     <head>
         <title>CAMAGRU</title>
         <link rel="stylesheet" href="css/login.css">
-        <h1 align="center" >LOG_IN_</h1>
+        <div class="NavBar">
+            <a>HOME</a>
+            <a>Gallery</a>
+            <a>Uplaod</a>
+            <a>Profile</a>
+            <a>LogOut</a>
+        </div>
         <hr>
     </head>
     <body style="background-color:white;">

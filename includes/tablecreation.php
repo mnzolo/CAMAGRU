@@ -2,7 +2,7 @@
     try{
         $DB_DSN = "localhost";
         $DB_USER = "root";
-        $DB_PASSWORD = "123456";
+        $DB_PASSWORD = "";
 
         $conn = new PDO("mysql:host=$DB_DSN;dbname=CAMAGRU;", $DB_USER, $DB_PASSWORD);
 
