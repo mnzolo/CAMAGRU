@@ -147,7 +147,7 @@ class Tables{
         {
             $this->DB_DSN = "localhost";
             $this->DB_USER = "root";
-            $this->DB_PASSWORD =  "";
+            $this->DB_PASSWORD =  "123456";
         }
 
         public function create()
@@ -171,7 +171,7 @@ class Tables{
                     $sqe="CREATE TABLE IF NOT EXISTS IMAGES(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         imgurl varchar(300) NOT NULL,
-                        token varchar(50) NOT NULL
+                        token varchar(100) NOT NULL
                     )";
 
                     $conn->exec($sqe);
@@ -333,24 +333,29 @@ public function updateuser()
 
 class image{
 
+    protected $connect;
     protected $imgurl;
     protected $username;
 
     public function construct($conn, $imgurl)
     {
-        $imgurl = $imgurl;
-        $username = $_SESSION["user"];
+        $this->connect = $conn;
+        $this->imgurl = $imgurl;
+        $this->username = $_SESSION["user"];
     }
-    public function uploadpic()
+    public function uploadpics()
     {
+        echo $this->connect;
         try{
-        $sql="INSERT INTO IMAGES (imgurl,token)
-        VALUES ($this->imgurl,$this->username)
-        ";
+            $set="INSERT INTO images (imgurl,token)
+            VALUES ($this->imgurl,$this->username)
+            ";
 
-        $this->conn->exec($sql);
+            $this->connect->exec($set);
+        
+            header("location: ../uploadimage.php");
 
-        return(1);
+            return(1);
         }
         catch(PDOEXCEPTION $e)
         {

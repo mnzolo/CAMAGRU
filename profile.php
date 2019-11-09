@@ -1,8 +1,8 @@
 <?php
     include  'includes/crud.php';
     include  'includes/connection.php';
-
-    session_start();
+    
+    //session_start();
 
     $username = $_SESSION["user"];
 
@@ -15,7 +15,7 @@
     $email = $result["email"];
     $username = $result["username"];
 
-    $conn = null;
+    //$conn = null;
 ?>
 
 <html>
