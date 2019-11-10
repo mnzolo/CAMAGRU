@@ -13,7 +13,6 @@
     <div>
     </body>
 </html>
-
 <script>
     var video = document.querySelector("#videocam");
 </script>

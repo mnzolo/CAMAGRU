@@ -175,6 +175,22 @@ class Tables{
                     )";
 
                     $conn->exec($sqe);
+
+                    $sqa="CREATE TABLE IF NOT EXISTS COMMENTS(
+                        id INT(10) AUTO_INCREMENT PRIMARY KEY,
+                        imgurl varchar(300) NOT NULL,
+                        token varchar(100) NOT NULL
+                    )";
+
+                    $conn->exec($sqa);
+
+                    $sqb="CREATE TABLE IF NOT EXISTS LIKES(
+                        id INT(10) AUTO_INCREMENT PRIMARY KEY,
+                        imgurl varchar(300) NOT NULL,
+                        token varchar(100) NOT NULL
+                    )";
+
+                    $conn->exec($sqb);
                 }
             catch(PDOEXCEPTION $e)
                 {
