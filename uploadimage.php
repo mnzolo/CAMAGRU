@@ -21,12 +21,13 @@
         </div>
     </form>
     <div>
-        <?php
+        <div>
+            <?php
 
                 $connection = new Insert();
                 $conn = $connection->createconn();
 
-                $username = $_SESSION["User"];
+                $username = $_SESSION["user"];
 
                 $sql="SELECT * FROM IMAGES WHERE token='$username'
                 ";
@@ -35,9 +36,14 @@
                 $result->setFetchMode(PDO::FETCH_ASSOC);
                 $images = $result->fetchall();
 
-                print_r($images);
-
-        ?>
+                foreach($images as $value)
+                {
+                    echo "<div class='imagediv' ><img style='width:500px; height:500px' src='$value[imgurl]'></div>";
+                }
+            ?>
+        </div>
+        <form>
+        </form>
     </div>
     </body>
 </html>

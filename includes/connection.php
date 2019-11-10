@@ -17,7 +17,6 @@ class   Insert{
                     $conn = new PDO("mysql:host=$this->DB_DSN;dbname=CAMAGRU;", $this->DB_USER, $this->DB_PASSWORD);
 
                     $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-                    
 
                     return $conn;
                 }

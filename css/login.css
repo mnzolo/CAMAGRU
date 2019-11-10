@@ -33,3 +33,7 @@ p{
     background-color:green;
     width:200px;
 }
+
+.imagediv{
+    display: flex;
+}

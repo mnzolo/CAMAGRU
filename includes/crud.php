@@ -1,4 +1,4 @@
-<?php 
+1<?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -333,27 +333,25 @@ public function updateuser()
 
 class image{
 
-    protected $connect;
+    protected $conn;
     protected $imgurl;
     protected $username;
 
-    public function construct($conn, $imgurl)
+    public function __construct($conn,$upload_path)
     {
-        $this->connect = $conn;
-        $this->imgurl = $imgurl;
+        $this->conn = $conn;
+        $this->imgurl = $upload_path;
         $this->username = $_SESSION["user"];
     }
     public function uploadpics()
     {
-        echo $this->connect;
         try{
-            $set="INSERT INTO images (imgurl,token)
-            VALUES ($this->imgurl,$this->username)
+            
+            $sql="INSERT INTO IMAGES (imgurl,token)
+            VALUES ('$this->imgurl','$this->username')
             ";
 
-            $this->connect->exec($set);
-        
-            header("location: ../uploadimage.php");
+            $this->conn->exec($sql);
 
             return(1);
         }

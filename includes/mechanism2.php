@@ -49,7 +49,7 @@
         
         if ($res == 1)
         {
-            $sentemail = mail("$email1","Email Verification CAMAGRU", "click on the link to Verify <a href='http://localhost:8080/crud/confirmemail.php?token=$token&&user=$username'>Account</a>");
+            $sentemail = mail("$email1","Email Verification CAMAGRU", "click on the link to Verify <a href='http://localhost:8080/CAMAGRU/confirmemail.php?token=$token&&user=$username'>Account</a>");
             
             if ($sentemail)
             {

@@ -25,7 +25,7 @@
 
         if ($res != NULL)
         {
-            $send = mail("$email2","CAMAGRU EMAIL VERIFICATION","CAMAGRU EMAIL VERIFY <a href='http://localhost:8080/crud/confirmemail.php?token=$token&&user=$username'>Account</a>");
+            $send = mail("$email2","CAMAGRU EMAIL VERIFICATION","CAMAGRU EMAIL VERIFY <a href='http://localhost:8080/CAMAGRU/confirmemail.php?token=$token&&user=$username'>Account</a>");
 
             if ($send)
             {
