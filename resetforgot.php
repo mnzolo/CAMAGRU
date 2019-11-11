@@ -4,10 +4,17 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <title>CAMAGRU</title>
         <link rel="stylesheet" href="css/login.css">
-        <h1 align="center" >Forgot_Password_</h1>
+        <div class="NavBar">
+            <a href="index.php">HOME</a>
+            <a href="home.php">Gallery</a>
+            <a href="uploadimage.php">Uplaod</a>
+            <a href= "profile.php">Profile</a>
+            <a href= "camera.php">Camera</a>
+            <a href="logout.php" >LogOut</a>
+        </div>
         <hr>
     </head>
     <body style="background-color: white">

@@ -43,3 +43,7 @@ p{
 .imagediv{
     display: flex;
 }
+
+#commentssection{
+    overflow: scroll;
+}

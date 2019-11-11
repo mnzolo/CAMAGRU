@@ -5,8 +5,8 @@ include  'connection.php';
 
 
     $upload_dir = "../uploads/";
-    $upload_path = $upload_dir.basename($_FILES["takeimage"]["name"]);
-
+    $upload_path = $upload_dir.basename($_FILES["takeimage"]["name"]).time();
+    $unique = basename($_FILES["takeimage"]["name"]).time();
     
     if (getimagesize($_FILES["takeimage"]["tmp_name"]))
     {
@@ -18,7 +18,7 @@ include  'connection.php';
             $connection = new Insert();
             $conn = $connection->createconn();
             
-            $upload_path = "uploads/".basename($_FILES["takeimage"]["name"]);
+            $upload_path = "uploads/".$unique;
 
             $add = new image($conn,$upload_path);
             $res = $add->uploadpics();
@@ -29,7 +29,7 @@ include  'connection.php';
             }
             else
             {
-                echo "Error In ImGE FORMAT";
+                echo "Error In Image FORMAT";
             }
         }
         else

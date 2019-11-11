@@ -39,7 +39,8 @@
     {
         $_SESSION["user"] = $username;
         $_SESSION["password"] = $password1;
-        header("location: ../profile.php");
+        $_SESSION["login"] = "True";
+        header("location: ../home.php");
     }
 }
 ?>

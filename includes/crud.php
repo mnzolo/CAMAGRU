@@ -179,7 +179,8 @@ class Tables{
                     $sqa="CREATE TABLE IF NOT EXISTS COMMENTS(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         imgurl varchar(300) NOT NULL,
-                        token varchar(100) NOT NULL
+                        token varchar(100) NOT NULL,
+                        comment varchar(300) NOT NULL
                     )";
 
                     $conn->exec($sqa);
@@ -370,6 +371,37 @@ class image{
             $this->conn->exec($sql);
 
             return(1);
+        }
+        catch(PDOEXCEPTION $e)
+        {
+            echo "Error".$e->getMessage();
+        }
+    }
+}
+
+class   Comment{
+    protected $comment;
+    protected $username;
+    protected $imgurl;
+    protected $conn;
+
+    public function __construct($comment, $imgurl, $conn)
+    {
+        $this->comment = $comment;
+        $this->imgurl = $imgurl;
+        $this->username = $_SESSION["user"];
+        $this->conn = $conn;
+    }
+
+    public function addcom()
+    {
+        try{
+        $sql="INSERT INTO COMMENTS (imgurl,token,comment)
+        VALUES ('$this->imgurl', '$this->username', '$this->comment')
+        ";
+
+        $this->conn->exec($sql);
+        return (1);
         }
         catch(PDOEXCEPTION $e)
         {
