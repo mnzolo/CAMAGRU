@@ -53,11 +53,18 @@
                 $res->setFetchMode(PDO::FETCH_ASSOC);
                 $comments = $res->fetchall();
 
+                $sqa="SELECT * FROM likes";
+
+                $resu = $conn->query($sqa);
+                $resu->setFetchMode(PDO::FETCH_ASSOC);
+                $likes = $resu->fetchall();
+
                 foreach($images as $value)
                 {
                     echo "<div class='imagediv' ><img style='width:500px; height:500px' src='$value[imgurl]'></div>";
                     echo "<br>"."<br>";
                     $img = $value["imgurl"];
+                    ?><div class='commentssection' ><?php
                     foreach($comments as $key)
                     {
                         if($img == $key["imgurl"])
@@ -65,15 +72,27 @@
                             echo "<div class='commentssection' ><p>$key[token]</p><hr><p>$key[comment]<p></div>";
                         }
                     }
-                    ?>
+                    ?></div>
                     <!-- <div class='commentssection'><P>$username<hr>$comment</div>"; -->
                     <form method="post" action="includes/comments.php?image=<?php echo $img ?>">
                             <input type="textarea" name="comment" placeholder="COMMENT">
                             <input type="submit" name="Comment" value="Comment">
                     </form>
-                    <form method="post" action="includes/likes.php">
+                    <div class="likessection">
+                    <form method="post" action="includes/likes.php?image=<?php echo $img ?>">
                             <input type="submit" name="like" value="Like">
+                            <?php
+                                foreach($likes as $key)
+                                {
+                                    $num = count($key["imgurl"]);
+                                    if($img == $key["imgurl"])
+                                    {
+                                        echo "<span class='imgheart'>$num <img style='width:50px; height:50px' src='icons/like.svg'> this image </span>";
+                                    }
+                                }
+                            ?>
                     </form>
+                    </div>
                     <?php
                 }
                 ?>

@@ -1,4 +1,4 @@
-1<?php 
+<?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -402,6 +402,55 @@ class   Comment{
 
         $this->conn->exec($sql);
         return (1);
+        }
+        catch(PDOEXCEPTION $e)
+        {
+            echo "Error".$e->getMessage();
+        }
+    }
+}
+
+class   like{
+    protected $like;
+    protected $username;
+    protected $imgurl;
+    protected $conn;
+
+    public function __construct($like, $imgurl, $conn)
+    {
+        $this->comment = $like;
+        $this->imgurl = $imgurl;
+        $this->username = $_SESSION["user"];
+        $this->conn = $conn;
+    }
+
+    public function addlike()
+    {
+        try{
+        $sql = "SELECT * FROM LIKES WHERE token='$this->username'";
+        $result = $this->conn->query($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $value = $result->fetchall();
+
+        foreach($value as $key)
+        {
+            if(($key["token"] == $this->username) && ($key["imgurl"] == $this->imgurl))
+            {
+                $sql="DELETE FROM LIKES WHERE token='$this->username' AND imgurl='$this->imgurl'";
+
+                $this->conn->exec($sql);
+
+                return (1);
+            }
+        }
+
+        $sqe="INSERT INTO LIKES (imgurl,token)
+        VALUES ('$this->imgurl', '$this->username')
+        ";
+
+        $this->conn->exec($sqe);
+
+        return(1);
         }
         catch(PDOEXCEPTION $e)
         {

@@ -27,7 +27,8 @@
         <title>CAMAGRU</title>
         <link rel="stylesheet" href="css/login.css">
         <div class="NavBar">
-            <a href="home.php">HOME</a>
+            <a href="index.php">HOME</a>
+            <a href="home.php">Gallery</a>
             <a href="uploadimage.php">Uplaod</a>
             <a href= "profile.php">Profile</a>
             <a href= "camera.php">Camera</a>
