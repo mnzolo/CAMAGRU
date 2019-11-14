@@ -31,39 +31,75 @@
                 .camcont
                 {
                     background-color: gray;
-                    width: 500px;
-                    height: 500px;
+                    width: 600px;
+                    height: 600px;
                 }
+
+                .canvas1{
+                    width: 400px;
+                    height: 400px;
+                    border: 7px black solid;
+                    margin-left: 0px;
+                    border-radius: 5px;
+                    background-color: gray;
+                }        
         </style>
     </head>
     <body style="background-color: white">
-    <div align="center" style="background-color: gray;width: 500px;height: 500px;border: 7px black solid; border-radius: 5px;">
+    <div align="center" style="background-color: gray;width: 500px;height: 500px;border: 7px black solid; border-radius: 5px; margin-left:15px;">
         <video id="videocam" autoplay="true">
         </video>
         <?php
             echo "<br>"."<br>";
         ?>
-        <form action="#">
-            <input align="left" style="width: 100px; height: 50px;" type="submit" name="capture" value="Capture Image">
-        </form>
-        <form action="#">
-            <input align="left" style="width: 100px; height: 50px;" type="submit" name="stickers" value="stickers">
-        </form>
+        
+        <button id="Snap">Capture Image</button>
+        
+        <select>
+                <option value="soccerball">soccerball</option>
+                <option value="Nike">Nike</option>
+                <option value="Adidas">Adidas</option>
+                <option value="Puma">Puma</option>
+                <option value="Reebok">Reebok</option>
+                <option value="Jordan">Jordan</option>
+        </select>
+        
+        <?php
+            echo "<br>"."<br>";
+        ?>
+
+        <canvas id="canvas" class="canvas1"></canvas>
+        <?php
+            echo "<br>"."<br>";
+        ?>
     <div>
     </body>
 </html>
 <script>
     var video = document.querySelector("#videocam");
+    const canvas = document.getElementById("canvas");
+    /* var snap = document.getElementById("snap"); */
 
-    if(navigator.mediaDevices.getUserMedia)
-    {
-        navigator.mediaDevices.getUserMedia({video: true})
-        .then(function(stream)
+    async function init()
+    {            
+        if(navigator.mediaDevices.getUserMedia)
         {
-            video.srcObject = stream;
-        })
-        .catch(function (err0r) {
-        console.log("Something went wrong!");
-        });
+            navigator.mediaDevices.getUserMedia({video: true})
+            .then(function(stream)
+            {
+                video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+            console.log("Something went wrong!");
+            });
+        }
     }
+
+    init();
+
+    var context = canvas.getContext('2d');
+    document.getElementById("Snap").addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 325, 150);
+});
+
 </script>

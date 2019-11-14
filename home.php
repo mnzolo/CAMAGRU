@@ -1,6 +1,10 @@
 <?php
    include  'includes/connection.php';
    session_start();
+   $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+   $perpage = ($page > 1) ? ($page * 5) : 5;
+   $sub = 5;
+   $start = ($page > 1) ? (($page * 5) - $sub) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +30,7 @@
                 $conn = $connection->createconn();
 
                 $sql="SELECT * FROM IMAGES
+                    LIMIT $start, {$perpage}
                 ";
 
                 $result = $conn->query($sql);
