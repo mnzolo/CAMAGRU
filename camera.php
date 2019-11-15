@@ -6,6 +6,8 @@
    {
        header("location: index.php");
    }
+
+//   echo $_POST["data"];
 ?>
 
 <!DOCTYPE html>
@@ -55,13 +57,13 @@
         
         <button id="Snap">Capture Image</button>
         
-        <select>
-                <option value="soccerball">soccerball</option>
-                <option value="Nike">Nike</option>
-                <option value="Adidas">Adidas</option>
-                <option value="Puma">Puma</option>
-                <option value="Reebok">Reebok</option>
-                <option value="Jordan">Jordan</option>
+        <select id="sticker">
+                <option name="soccerball" value="soccerball">soccerball</option>
+                <option name="Nike" value="Nike">Nike</option>
+                <option name="Adidas" value="Adidas">Adidas</option>
+                <option name="Puma" value="Puma">Puma</option>
+                <option name="Reebok" value="Reebok">Reebok</option>
+                <option name="Jordan" value="Jordan">Jordan</option>
         </select>
         
         <?php
@@ -72,6 +74,10 @@
         <?php
             echo "<br>"."<br>";
         ?>
+        <form action="includes/storecam.php" method="post">
+        <input id="savingdata" name="data" type="hidden">
+        <input id="Save" type="submit" value="Save">
+        </form>
     <div>
     </body>
 </html>
@@ -100,6 +106,22 @@
     var context = canvas.getContext('2d');
     document.getElementById("Snap").addEventListener("click", function() {
 	context.drawImage(video, 0, 0, 325, 150);
+
+    document.getElementById("savingdata").value = canvas.toDataURL("images/png");
 });
+
+    var img = document.getElementById("image");
+
+document.getElementById("sticker").addEventListener("click", function() {
+	context.drawImage(img, 0, 0, 40, 50);
+});
+
+/*
+    var image = dataURL.getImageData();
+
+    document.getElementById("Snap").addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 325, 150);
+
+}); */
 
 </script>
