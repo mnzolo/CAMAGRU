@@ -2,9 +2,8 @@
    include  'includes/connection.php';
    session_start();
    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
-   $perpage = ($page > 1) ? ($page * 5) : 5;
-   $sub = 5;
-   $start = ($page > 1) ? (($page * 5) - $sub) : 0;
+   $perpage = 5;
+   $start = ($page > 1) ? (($page * 5) - 5) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +29,22 @@
                 $conn = $connection->createconn();
 
                 $sql="SELECT * FROM IMAGES
-                    LIMIT $start, {$perpage}
+                    LIMIT {$start}, {$perpage}
                 ";
-
+                
                 $result = $conn->query($sql);
                 $result->setFetchMode(PDO::FETCH_ASSOC);
                 $images = $result->fetchall();
+                
+                $sql="SELECT * FROM IMAGES
+                ";
+                
+                $result = $conn->query($sql);
+                $result->setFetchMode(PDO::FETCH_ASSOC);
+                $imagesrows = $result->fetchall();
+
+                $rows = count($imagesrows);
+                $numpages = ceil($rows / $perpage);
 
                 $sqc="SELECT * FROM COMMENTS";
 
@@ -93,6 +102,16 @@
                     <?php
                 }
                 ?>
+                <div>
+                <?php
+                  for($x= 1; $x <= $numpages; $x++)
+                  {
+                      ?>
+                      <a href="?page=<?php echo $x ?>"><?php echo $x ?></a>
+                      <?php
+                  }
+                ?>
+                </div>
         </div>
 </body>
 </html>
