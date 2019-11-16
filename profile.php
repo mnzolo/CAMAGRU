@@ -67,5 +67,16 @@
                 <input style="width:100px;background-color:green;" type="submit" name="Reset Password" value="Reset password">
             </div>
         </form>
+        <div>
+            <p align="center">NOTIFICATIONS_</p>
+            <div>
+                <form align="center">
+                <input style="width:100px;background-color:green;" type="submit" name="YES" value="YES_NOTIFY">
+                </form>
+                <form align="center">
+                <input style="width:100px;background-color:green;" type="submit" name="NO" value="NO_NOTIFY">
+                </form>
+            </div>
+        </div>
     </body>
 </html>

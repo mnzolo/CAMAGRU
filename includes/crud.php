@@ -163,7 +163,8 @@ class Tables{
                         username varchar(50) NOT NULL,
                         passwords varchar(255) NOT NULL,
                         tokens varchar(50) NOT NULL,
-                        verified varchar(1) DEFAULT '0'
+                        verified varchar(1) DEFAULT '0',
+                        Notifications varchar(1) DEFAULT '0'
                     )";
 
                     $conn->exec($sql);
