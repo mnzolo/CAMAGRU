@@ -3,9 +3,9 @@
    include  'connection.php';
 
     $email = NULL;
-    $password = $_POST["password1"];
-    $password1 = $_POST["password2"];
-    $token = $_POST["token"];     
+    $password = htmlspecialchars($_POST["password1"]);
+    $password1 = htmlspecialchars($_POST["password2"]);
+    $token = htmlspecialchars($_POST["token"]);     
     if($password != $password1)
     {
         echo "please enter valid passwords";

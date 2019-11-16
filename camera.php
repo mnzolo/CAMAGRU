@@ -68,7 +68,7 @@
         <?php
             echo "<br>"."<br>";
         ?>
-
+        <p>Stickers_</p>
         <div class="imagesblock">
                    <button id="stick"><img id="stickerimg"class="stickerblock" src="stickers/soccerball.jpg" alt="soccerball"></button>
                     <button id="stick1"><img id="stickerimg1" class="stickerblock" src="stickers/Nike.png" alt="Nike"></button>
@@ -118,12 +118,29 @@
 	context.drawImage(video, 0, 0, 325, 150);    
 });
 
+document.getElementById("stick").addEventListener("click", function() {
+    context.drawImage(document.getElementById("stickerimg"), 0, 0, 70, 80);
+    
+    document.getElementById("savingdata").value = canvas.toDataURL("images/png");
+});
+
 document.getElementById("stick1").addEventListener("click", function() {
     context.drawImage(document.getElementById("stickerimg1"), 0, 0, 70, 80);
     
     document.getElementById("savingdata").value = canvas.toDataURL("images/png");
 });
 
+document.getElementById("stick2").addEventListener("click", function() {
+    context.drawImage(document.getElementById("stickerimg2"), 0, 0, 70, 80);
+    
+    document.getElementById("savingdata").value = canvas.toDataURL("images/png");
+});
+
+document.getElementById("stick3").addEventListener("click", function() {
+    context.drawImage(document.getElementById("stickerimg3"), 0, 0, 70, 80);
+    
+    document.getElementById("savingdata").value = canvas.toDataURL("images/png");
+});
 
 /*
     var image = dataURL.getImageData();

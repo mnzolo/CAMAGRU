@@ -3,7 +3,7 @@
     include  'crud.php';
     include  'connection.php';
 
-    $comment = $_POST["comment"];
+    $comment = htmlspecialchars($_POST["comment"]);
     $imgurl = $_GET["image"];
 
     if($comment == NULL)

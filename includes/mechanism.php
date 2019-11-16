@@ -6,8 +6,8 @@
     session_start();
 
    // $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password1 = $_POST['password'];
+    $username = htmlspecialchars($_POST['username']);
+    $password1 = htmlspecialchars($_POST['password']);
     $email1 = NULL;
     $token = NULL;
     $newpassword = NULL;

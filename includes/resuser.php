@@ -3,8 +3,8 @@
     include  'crud.php';
     include  'connection.php';
 
-    $username = $_POST["user1"];
-    $username1 = $_POST["user2"];
+    $username = htmlspecialchars($_POST["user1"]);
+    $username1 = htmlspecialchars($_POST["user2"]);
     $token = NULL;
     $email = $username;
     $password = $username1;

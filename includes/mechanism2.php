@@ -6,10 +6,10 @@
     
     //session_start();
 
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = $_POST['password1'];
-    $password2 = $_POST['password2'];
+    $email = htmlspecialchars($_POST['email']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password1']);
+    $password2 = htmlspecialchars($_POST['password2']);
 
     if ($email == NULL)
     {
