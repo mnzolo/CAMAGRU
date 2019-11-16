@@ -23,7 +23,7 @@
                 <input type="text" name="username" placeholder="Please Username">
             </div>
             <div>
-                <input type="text" name="password" placeholder="Please Password">
+                <input type="password" name="password" placeholder="Please Password">
             </div>
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="LOG_IN_" value="LOG_IN_">

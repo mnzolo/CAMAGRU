@@ -44,7 +44,15 @@
                     margin-left: 0px;
                     border-radius: 5px;
                     background-color: gray;
-                }        
+                }
+                .imagesblock{
+                    background-color: green;
+                }
+                .stickerblock
+                {
+                    width: 200px;
+                    height:150px;
+                }
         </style>
     </head>
     <body style="background-color: white">
@@ -57,15 +65,16 @@
         
         <button id="Snap">Capture Image</button>
         
-        <select id="sticker">
-                <option name="soccerball" value="soccerball">soccerball</option>
-                <option name="Nike" value="Nike">Nike</option>
-                <option name="Adidas" value="Adidas">Adidas</option>
-                <option name="Puma" value="Puma">Puma</option>
-                <option name="Reebok" value="Reebok">Reebok</option>
-                <option name="Jordan" value="Jordan">Jordan</option>
-        </select>
-        
+        <?php
+            echo "<br>"."<br>";
+        ?>
+
+        <div class="imagesblock">
+                   <button id="stick"><img id="stickerimg"class="stickerblock" src="stickers/soccerball.jpg" alt="soccerball"></button>
+                    <button id="stick1"><img id="stickerimg1" class="stickerblock" src="stickers/Nike.png" alt="Nike"></button>
+                    <button id="stick2"><img id="stickerimg2" class="stickerblock" src="stickers/Nike2.png" alt="Nike2"></button>
+                    <button id="stick3"><img id="stickerimg3" class="stickerblock" src="stickers/adidas.jpg" alt="adidas"></button>
+        </div>
         <?php
             echo "<br>"."<br>";
         ?>
@@ -104,17 +113,17 @@
     init();
 
     var context = canvas.getContext('2d');
-    document.getElementById("Snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 325, 150);
 
+    document.getElementById("Snap").addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 325, 150);    
+});
+
+document.getElementById("stick1").addEventListener("click", function() {
+    context.drawImage(document.getElementById("stickerimg1"), 0, 0, 70, 80);
+    
     document.getElementById("savingdata").value = canvas.toDataURL("images/png");
 });
 
-    var img = document.getElementById("image");
-
-document.getElementById("sticker").addEventListener("click", function() {
-	context.drawImage(img, 0, 0, 40, 50);
-});
 
 /*
     var image = dataURL.getImageData();
