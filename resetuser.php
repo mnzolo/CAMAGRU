@@ -19,5 +19,8 @@
         <input type="text" name="user2" placeholder="Please ENTER NEW USERNAME">
         <input style="width:100px;background-color:green;" type="submit" name="UPDATE_EMAIL_" value="UPDATE_EMAIL_">
         </form>
+        <?php
+        require_once 'footer.php';
+    ?>
     </body>
 </html>

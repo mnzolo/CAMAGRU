@@ -28,5 +28,8 @@
             <input style="width:100px;background-color:green;" type="submit" name="Reset" value="Reset_">
             </div>
         </form>
+        <?php
+        require_once 'footer.php';
+    ?>
     </body>
 </html>

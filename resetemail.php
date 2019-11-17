@@ -19,5 +19,8 @@
             <p>Send_Reset_Email_ :</p><input class="put" type="submit" name="Sendemail_">
             <p>Return_to_LOG_IN_ :</p><input class="put" type="submit" name="LOG_IN_">
         </form>
+        <?php
+        require_once 'footer.php';
+    ?>
     </body>
 <html>

@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include  'crud.php';
 include  'connection.php';
 
@@ -18,9 +16,9 @@ include  'connection.php';
         $com = new like($_POST["like"], $_GET["image"], $conn);
         $res = $com->addlike();
 
-        $$que = $conn->prepare("SELECT * FROM IMAGES WHERE imgurl='$imgurl'");
-        $que->execute();
-        $images = $que->fetchAll(PDO::FETCH_ASSOC);
+        $ques = $conn->prepare("SELECT * FROM IMAGES WHERE imgurl='$_GET[image]'");
+        $ques->execute();
+        $images = $ques->fetchAll(PDO::FETCH_ASSOC);
 
         foreach($images as $key)
         {

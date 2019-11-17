@@ -24,4 +24,8 @@
         <input type="text" name="password2" placeholder="Please Confirm Password">
         <input style="width:100px;background-color:green;" type="submit" name="Register" value="reset">
     </form>
+    <?php
+        require_once 'footer.php';
+    ?>
+    </body>
 </html>

@@ -43,5 +43,8 @@
                 <input style="width:100px;background-color:green;" type="submit" name="Send Password Reset Email" value="forgot password">
             </div>
         </form>
+    <?php
+        require_once 'footer.php';
+    ?>
     </body>
 </html>
