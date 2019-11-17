@@ -226,7 +226,7 @@ class   fetch
 
             foreach($value as $key)
             {
-                $this->info = array("username" => $key["username"], "email" => $key["email"]);
+                $this->info = array("username" => $key["username"], "email" => $key["email"], "notifications" => $key["Notifications"]);
             }
             
             return ($this->info);

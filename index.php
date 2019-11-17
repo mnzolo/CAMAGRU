@@ -1,5 +1,11 @@
 <?php
+    session_start();
     include 'includes/datab.php';
+
+    if($_SESSION["login"] == "True")
+    {
+        header("location: home.php");
+    }
 ?>
 
 <!DOCTYPE html>

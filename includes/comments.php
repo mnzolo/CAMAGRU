@@ -18,9 +18,35 @@
         $com = new Comment($comment, $imgurl, $conn);
         $res = $com->addcom();
 
+        $que = $conn->prepare("SELECT * FROM IMAGES WHERE imgurl='$imgurl'");
+        $que->execute();
+        $images = $que->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($images as $key)
+        {
+            $userimage = $key["token"];
+        }
+
+        $objects = new fetch($conn,$userimage);
+        $result = $objects->getstuff();
+
+        $email = $result["email"];
+        $notify = $result["notifications"];
+
+        $username = $_SESSION["user"];
+
         if($res == 1)
         {
-            header("location: ../uploadimage.php");
+            
+            if ($notify == '1')
+            {
+                mail("$email","CAMAGRU Notification","$username just Liked your image");
+                header("location: ../uploadimage.php");
+            }
+            else if($notify == '0')
+            {
+                header("location: ../uploadimage.php");
+            }
         }
         else
         {

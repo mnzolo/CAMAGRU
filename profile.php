@@ -18,6 +18,7 @@
 
     $email = $result["email"];
     $username = $result["username"];
+    $notify = $result["notifications"];
    }
     //$conn = null;
 ?>
@@ -69,12 +70,26 @@
         </form>
         <div>
             <p align="center">NOTIFICATIONS_</p>
+            <?php
+                if($notify == "1")
+                {
+                    ?>
+                    <p align="center">"Notifications are On"</p>
+                <?php
+                }
+                else
+                {
+                    ?>
+                    <p align="center">"Nofications turned off"</P>
+                <?php
+                }
+            ?>
             <div>
-                <form align="center">
-                <input style="width:100px;background-color:green;" type="submit" name="YES" value="YES_NOTIFY">
+                <form align="center" action="includes/notify.php" method="post">
+                <input style="width:100px;background-color:green;" type="submit" name="notify" value="YES_NOTIFY">
                 </form>
-                <form align="center">
-                <input style="width:100px;background-color:green;" type="submit" name="NO" value="NO_NOTIFY">
+                <form align="center" action="includes/notify.php" method="post">
+                <input style="width:100px;background-color:green;" type="submit" name="notify" value="NO_NOTIFY">
                 </form>
             </div>
         </div>
