@@ -37,9 +37,6 @@
         $email1 = $email;
         $password1 = password_hash($password, PASSWORD_DEFAULT);
         $token = substr(sha1($email), 0 ,10);
-        
-        $tables = new tables();
-        $tables->create();
           
         $connection = new Insert();
         $conn = $connection->createconn();

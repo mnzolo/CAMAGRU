@@ -167,6 +167,9 @@ class Tables{
                         Notifications varchar(1) DEFAULT '0'
                     )";
 
+                    echo "USES TABLE CREATED";
+                    echo "<br>";
+
                     $conn->exec($sql);
 
                     $sqe="CREATE TABLE IF NOT EXISTS IMAGES(
@@ -176,6 +179,9 @@ class Tables{
                     )";
 
                     $conn->exec($sqe);
+                    
+                    echo "IMAGES TABLE CREATED";
+                    echo "<br>";
 
                     $sqa="CREATE TABLE IF NOT EXISTS COMMENTS(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
@@ -186,6 +192,9 @@ class Tables{
 
                     $conn->exec($sqa);
 
+                    echo "COMMENTS TABLE CEATED";
+                    echo "<br>";
+
                     $sqb="CREATE TABLE IF NOT EXISTS LIKES(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         imgurl varchar(300) NOT NULL,
@@ -193,6 +202,9 @@ class Tables{
                     )";
 
                     $conn->exec($sqb);
+
+                    echo "LIKES TABLE CREATED";
+                    echo "<br>";
                 }
             catch(PDOEXCEPTION $e)
                 {
