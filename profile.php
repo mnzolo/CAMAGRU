@@ -10,6 +10,8 @@
    {
     $username = $_SESSION["user"];
 
+    echo "$username";
+
     $fetch = new Insert();
     $conn = $fetch->createconn();
 

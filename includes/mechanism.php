@@ -3,7 +3,7 @@
     include  'crud.php';
     include  'connection.php';
     
-    session_start();
+    //session_start();
 
    // $email = $_POST['email'];
     $username = htmlspecialchars($_POST['username']);
