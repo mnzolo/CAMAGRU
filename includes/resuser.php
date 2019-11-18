@@ -17,6 +17,7 @@
 
     if ($res == 1)
     {
+        $_SESSION["user"] = $username1;
         echo "User successfully updated";
     }
     else
