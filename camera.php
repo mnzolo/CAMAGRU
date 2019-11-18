@@ -115,7 +115,9 @@
     var context = canvas.getContext('2d');
 
     document.getElementById("Snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 325, 150);    
+	context.drawImage(video, 0, 0, 325, 150);
+
+    document.getElementById("savingdata").value = canvas.toDataURL("images/png");    
 });
 
 document.getElementById("stick").addEventListener("click", function() {
