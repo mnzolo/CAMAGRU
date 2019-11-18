@@ -50,7 +50,7 @@
             
             if ($sentemail)
             {
-                echo "Email Has been sent to account";
+                echo "Email Has been sent check your email account";
             }
             else 
             {

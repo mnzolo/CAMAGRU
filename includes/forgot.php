@@ -21,7 +21,7 @@
 
         if ($res != NULL)
         {
-            $sent = mail("$email","FORGOT PASSWORD CAMAGRU","click on the link to create a new <a href='http://localhost:8080/crud/resetforgot.php?token=$res'>password<a/>");
+            $sent = mail("$email","FORGOT PASSWORD CAMAGRU","click on the link to create a new <a href='http://localhost:8080/CAMAGRU/resetforgot.php?token=$res'>password<a/>");
             if($sent)
             {
                 echo "Email Sent Check your Email";

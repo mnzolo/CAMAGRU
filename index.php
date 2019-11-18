@@ -29,16 +29,16 @@
                 <input type="text" name="username" placeholder="Please Username">
             </div>
             <div>
-                <input type="password" name="password" placeholder="Please Password">
+                <input type="password" name="password" placeholder="Please Password" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
             </div>
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="LOG_IN_" value="LOG_IN_">
             </div>
         </form>
-        <form action="register.php">
+        <form align="center" action="register.php">
                 <input style="width:100px;background-color:green;" type="submit" name="Register_" value="Register">
         </form>
-        <form method="post" action="forgotpassword.php">
+        <form align="center" method="post" action="forgotpassword.php">
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="Send Password Reset Email" value="forgot password">
             </div>

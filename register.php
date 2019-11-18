@@ -22,9 +22,9 @@
                 <input type="text" name="username" placeholder="Please Enter Username">
             </div>
             <div>
-                <input type="password" name="password1" placeholder="Please Enter Password">
+                <input type="password" name="password1" placeholder="Please Enter Password" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
             </div>
-                <input type="password" name="password2" placeholder="Please Confirm Password">
+                <input type="password" name="password2" placeholder="Please Confirm Password" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
             </div>
             <div>
                 <input style="width:100px;background-color:green;" type="submit" name="Register" value="Register">

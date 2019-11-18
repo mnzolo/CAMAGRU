@@ -27,7 +27,7 @@
             $ret = $forgot->updatepass();
             if ($ret == 1)
             {
-                echo "Successful password reset";
+                header("location: ../index.php");
             }
             else
             {

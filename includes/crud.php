@@ -97,8 +97,8 @@ class User{
         {
             if ($key['verified'] == '1')
             {
-                echo "LINK_ALREADY_USED or Go_TO_Registration_";
-                //header("location: register.php");
+                //echo "LINK_ALREADY_USED or Go_TO_Registration_";
+                header("location: register.php");
                 return  (0);
             }
         }
@@ -106,7 +106,7 @@ class User{
         $sql1="UPDATE USERS SET verified='1' where username='$this->username'";
         $this->conn->exec($sql1);
 
-        echo "Email Verified GO To LOG_IN_";
+        header("location: index.php");
     }
 
     //in_the_making

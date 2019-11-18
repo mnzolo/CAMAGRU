@@ -93,6 +93,9 @@
                             ?>
                     </form>
                     </div>
+                    <form method="post" action="includes/deletepic.php?image=<?php echo $img ?>">
+                            <input type="submit" name="delete" value="DELETE">
+                    </form>
                     <?php
                 }
                 ?>
