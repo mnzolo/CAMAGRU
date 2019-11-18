@@ -167,7 +167,7 @@ class Tables{
                         Notifications varchar(1) DEFAULT '0'
                     )";
 
-                    echo "USES TABLE CREATED";
+                    echo "USERS TABLE CREATED";
                     echo "<br>";
 
                     $conn->exec($sql);
