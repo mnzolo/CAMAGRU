@@ -22,24 +22,23 @@
         <hr>
     </head>
 <body style="background-color: white">
+
 <div>
             <?php
 
                 $connection = new Insert();
                 $conn = $connection->createconn();
 
-                $sql="SELECT * FROM IMAGES
-                    LIMIT {$start}, {$perpage}
-                ";
+                $sql="SELECT * FROM IMAGES ORDER BY `imgurl` DESC LIMIT {$start}, {$perpage}";
                 
                 $result = $conn->query($sql);
                 $result->setFetchMode(PDO::FETCH_ASSOC);
                 $images = $result->fetchall();
                 
-                $sql="SELECT * FROM IMAGES
+                $sqe="SELECT * FROM IMAGES
                 ";
                 
-                $result = $conn->query($sql);
+                $result = $conn->query($sqe);
                 $result->setFetchMode(PDO::FETCH_ASSOC);
                 $imagesrows = $result->fetchall();
 
@@ -89,15 +88,17 @@
                         }
                         ?>
                             <?php
+                                $num = 0;
+                                
                                 foreach($likes as $key)
                                 {
-                                    $num = count($key["imgurl"]);
                                     if($img == $key["imgurl"])
                                     {
-                                        echo "<span class='imgheart'>$num <img style='width:50px; height:50px' src='icons/like.svg'> this image </span>";
+                                        $num = $num + 1;
                                     }
                                 }
-                            ?>
+                                echo "<span class='imgheart'>$num <img style='width:50px; height:50px' src='icons/like.svg'> this image </span>";
+                                ?>
                     </div>
                     <?php
                 }

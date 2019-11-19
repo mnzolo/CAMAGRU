@@ -40,7 +40,10 @@
 
                 $username = $_SESSION["user"];
 
+                //echo $username;
+
                 $sql="SELECT * FROM IMAGES WHERE token='$username'
+                    ORDER BY imgurl DESC
                 ";
 
                 $result = $conn->query($sql);
@@ -82,14 +85,16 @@
                     <form method="post" action="includes/likes.php?image=<?php echo $img ?>">
                             <input type="submit" name="like" value="Like">
                             <?php
+                                $num = 0;
+                                
                                 foreach($likes as $key)
                                 {
-                                    $num = count($key["imgurl"]);
                                     if($img == $key["imgurl"])
                                     {
-                                        echo "<span class='imgheart'>$num <img style='width:50px; height:50px' src='icons/like.svg'> this image </span>";
+                                        $num = $num + 1;
                                     }
                                 }
+                                echo "<span class='imgheart'>$num <img style='width:50px; height:50px' src='icons/like.svg'> this image </span>";
                             ?>
                     </form>
                     </div>

@@ -27,9 +27,9 @@ class User{
     {
         try {
             $sql="SELECT * FROM users";
-            $result = $this->conn->query($sql);
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-            $value = $result->fetchAll();
+            $result = $this->conn->prepare($sql);
+            $result->execute();
+            $value = $result->fetchAll(PDO::FETCH_ASSOC);
 
             foreach($value as $key)
             {
@@ -53,7 +53,9 @@ class User{
               
             VALUES ('$this->email','$this->username','$this->password','$this->token', 0)"; 
   
-            $this->conn->exec($que);
+            $qua = $this->conn->prepare($que);
+
+            $qua->execute();
         
         } catch ( PDOException $e ) {
 			die( $e->getMessage() );
@@ -65,9 +67,9 @@ class User{
     public function validate_user()
     {
         $sq="SELECT * FROM USERS WHERE username='$this->username'";
-        $res = $this->conn->query($sq);
-        $res->setFetchMode(PDO::FETCH_ASSOC);
-        $val = $res->fetchall();
+        $res = $this->conn->prepare($sq);
+        $res->execute();
+        $val = $res->fetchall(PDO::FETCH_ASSOC);
 
         foreach($val as $key)
         {
@@ -89,9 +91,9 @@ class User{
     public function validation()
     {
         $sqe="SELECT * FROM USERS WHERE tokens='$this->token'";
-        $mail = $this->conn->query($sqe);
-        $mail->setFetchMode(PDO::FETCH_ASSOC);
-        $vmai = $mail->fetchall();
+        $mail = $this->conn->prepare($sqe);
+        $mail->execute();
+        $vmai = $mail->fetchall(PDO::FETCH_ASSOC);
 
         foreach ($vmai as $key)
         {
@@ -104,7 +106,8 @@ class User{
         }
 
         $sql1="UPDATE USERS SET verified='1' where username='$this->username'";
-        $this->conn->exec($sql1);
+        $sqn = $this->conn->prepare($sql1);
+        $sqn->execute();
 
         header("location: index.php");
     }
@@ -114,9 +117,9 @@ class User{
     public function reset_user()
     {
         $sqi="SELECT * FROM USERS WHERE email='$this->email'";
-        $reset = $this->conn->query($sqi);
-        $reset->setFetchMode(PDO::FETCH_ASSOC);
-        $rem = $reset->fetchall();
+        $reset = $this->conn->prepare($sqi);
+        $reset->execute();
+        $rem = $reset->fetchall(PDO::FETCH_ASSOC);
         $hash = password_hash($this->password2, PASSWORD_DEFAULT);
         
         foreach ($rem as $key)
@@ -124,7 +127,8 @@ class User{
             if($key["email"] == $this->email && password_verify($this->password,$key["passwords"]))
             {
                 $sp="UPDATE USERS SET passwords='$hash' WHERE email='$this->email'";
-                $this->conn->exec($sp);
+                $spa = $this->conn->prepare($sp);
+                $spa->execute();
                 return (1);
             }
             else
@@ -157,7 +161,7 @@ class Tables{
 
                     $conn->setAttribute(PDO:: ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-                    $sql="CREATE TABLE IF NOT EXISTS USERS(
+                    $sql = $conn->prepare("CREATE TABLE IF NOT EXISTS USERS(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         email varchar(50) NOT NULL,
                         username varchar(50) NOT NULL,
@@ -165,43 +169,43 @@ class Tables{
                         tokens varchar(50) NOT NULL,
                         verified varchar(1) DEFAULT '0',
                         Notifications varchar(1) DEFAULT '0'
-                    )";
+                    )");
 
+                    $sql->execute();
+                    
                     echo "USERS TABLE CREATED";
                     echo "<br>";
-
-                    $conn->exec($sql);
-
-                    $sqe="CREATE TABLE IF NOT EXISTS IMAGES(
+       
+                    $sqe= $conn->prepare("CREATE TABLE IF NOT EXISTS IMAGES(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         imgurl varchar(300) NOT NULL,
                         token varchar(100) NOT NULL
-                    )";
+                    )");
 
-                    $conn->exec($sqe);
+                    $sqe->execute();
                     
                     echo "IMAGES TABLE CREATED";
                     echo "<br>";
 
-                    $sqa="CREATE TABLE IF NOT EXISTS COMMENTS(
+                    $sqa=$conn->prepare("CREATE TABLE IF NOT EXISTS COMMENTS(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         imgurl varchar(300) NOT NULL,
                         token varchar(100) NOT NULL,
                         comment varchar(300) NOT NULL
-                    )";
+                    )");
 
-                    $conn->exec($sqa);
+                    $sqa->execute();
 
                     echo "COMMENTS TABLE CEATED";
                     echo "<br>";
 
-                    $sqb="CREATE TABLE IF NOT EXISTS LIKES(
+                    $sqb=$conn->prepare("CREATE TABLE IF NOT EXISTS LIKES(
                         id INT(10) AUTO_INCREMENT PRIMARY KEY,
                         imgurl varchar(300) NOT NULL,
                         token varchar(100) NOT NULL
-                    )";
+                    )");
 
-                    $conn->exec($sqb);
+                    $sqb->execute();
 
                     echo "LIKES TABLE CREATED";
                     echo "<br>";
@@ -231,10 +235,9 @@ class   fetch
     public  function getstuff()
     {
         try{
-            $sql="SELECT * FROM USERS WHERE username='$this->username'";
-            $result = $this->conn->query($sql);
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-            $value = $result->fetchall();
+            $sql=$this->conn->prepare("SELECT * FROM USERS WHERE username='$this->username'");
+            $sql->execute();
+            $value = $sql->fetchall(PDO::FETCH_ASSOC);
 
             foreach($value as $key)
             {
@@ -269,9 +272,9 @@ class   forgets{
     public function gorgetting()
     {
         $sql="SELECT * FROM USERS WHERE email='$this->email'";
-        $result = $this->conn->query($sql);
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $value = $result->fetchall();
+        $result = $this->conn->prepare($sql);
+        $result->execute();
+        $value = $result->fetchall(PDO::FETCH_ASSOC);
 
         foreach($value as $key)
         {
@@ -294,7 +297,8 @@ class   forgets{
     {
         try{
         $sql="UPDATE USERS SET passwords='password_hash($this->password,PASSWORD_DEFAULT)' WHERE tokens='$this->token'";
-        $this->conn->exec($sql);
+        $sqla = $this->conn->prepare($sql);
+        $sqla->execute();
 
             return(1);
         }
@@ -308,9 +312,9 @@ class   forgets{
     {
         try{
         $sql="SELECT * FROM USERS WHERE email='$this->email'";
-        $result = $this->conn->query($sql);
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $value = $result->fetchall();
+        $result = $this->conn->prepare($sql);
+        $result->execute();
+        $value = $result->fetchall(PDO::FETCH_ASSOC);
         
         foreach($value as $key)
         {
@@ -322,7 +326,8 @@ class   forgets{
             if ($val["email"] == $this->email)
             {
                 $sql="UPDATE USERS SET email='$this->password', verified='0' WHERE email='$this->email'";
-                $this->conn->exec($sql);
+                $sq = $this->conn->prepare($sql);
+                $sq->execute();
 
                 return ($this->info);
             }
@@ -338,16 +343,25 @@ public function updateuser()
     {
         try{
         $sql="SELECT * FROM USERS WHERE username='$this->email'";
-        $result = $this->conn->query($sql);
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $value = $result->fetchall();
+        $result = $this->conn->prepare($sql);
+        $result->execute();
+        $value = $result->fetchall(PDO::FETCH_ASSOC);
         
         foreach($value as $val)
         {
             if ($val["username"] == $this->email)
             {
                 $sql="UPDATE USERS SET username='$this->password' WHERE username='$this->email'";
-                $this->conn->exec($sql);
+                $sqr = $this->conn->prepare($sql);
+                $sqr->execute();
+
+                $sqlb="UPDATE IMAGES SET token='$this->password' WHERE token='$this->email'";
+                $sqs = $this->conn->prepare($sqlb);
+                $sqs->execute();
+
+                $sqlc="UPDATE COMMENTS SET token='$this->password' WHERE token='$this->email'";
+                $sqx = $this->conn->prepare($sqlc);
+                $sqx->execute();
 
                 return (1);
             }
@@ -381,7 +395,8 @@ class image{
             VALUES ('$this->imgurl','$this->username')
             ";
 
-            $this->conn->exec($sql);
+            $sqp = $this->conn->prepare($sql);
+            $sqp->execute();
 
             return(1);
         }
@@ -413,7 +428,9 @@ class   Comment{
         VALUES ('$this->imgurl', '$this->username', '$this->comment')
         ";
 
-        $this->conn->exec($sql);
+        $rsq = $this->conn->prepare($sql);
+        $rsq->execute();
+        
         return (1);
         }
         catch(PDOEXCEPTION $e)
@@ -441,9 +458,9 @@ class   like{
     {
         try{
         $sql = "SELECT * FROM LIKES WHERE token='$this->username'";
-        $result = $this->conn->query($sql);
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $value = $result->fetchall();
+        $result = $this->conn->prepare($sql);
+        $result->execute();
+        $value = $result->fetchall(PDO::FETCH_ASSOC);
 
         foreach($value as $key)
         {
@@ -451,7 +468,8 @@ class   like{
             {
                 $sql="DELETE FROM LIKES WHERE token='$this->username' AND imgurl='$this->imgurl'";
 
-                $this->conn->exec($sql);
+                $sqc = $this->conn->prepare($sql);
+                $sqc->execute();
 
                 return (1);
             }
@@ -461,7 +479,8 @@ class   like{
         VALUES ('$this->imgurl', '$this->username')
         ";
 
-        $this->conn->exec($sqe);
+        $ns = $this->conn->prepare($sqe);
+        $ns->execute();
 
         return(1);
         }

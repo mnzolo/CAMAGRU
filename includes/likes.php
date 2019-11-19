@@ -33,17 +33,16 @@ include  'connection.php';
 
         $username = $_SESSION["user"];
 
-
         if ($res == 1)
         {
             if ($notify == '1')
             {
                 mail("$email","CAMAGRU Notification","$username just Liked your image");
-                header("location: ../uploadimage.php");
+                header("location: ../home.php");
             }
             else if($notify == '0')
             {
-                header("location: ../uploadimage.php");
+                header("location: ../home.php");
             }
         }
         else
@@ -53,6 +52,6 @@ include  'connection.php';
     }
     else
     {
-        header("location: ../uploadimage.php");
+        header("location: ../home.php");
     }
 ?>

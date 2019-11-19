@@ -19,10 +19,10 @@
             <input type="text" name="email" placeholder="Please Enter Email">
             </div>
             <div>
-            <input type="text" name="OLD_PASSWORD" placeholder="Please Enter OLD_PASSWORD" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
+            <input type="password" name="OLD_PASSWORD" placeholder="Please Enter OLD_PASSWORD" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
             </div>
             <div>
-            <input type="text" name="NEW_PASSWORD" placeholder="Please Enter NEW_PASSWORD" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
+            <input type="password" name="NEW_PASSWORD" placeholder="Please Enter NEW_PASSWORD" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
             </div>
             <div>
             <input style="width:100px;background-color:green;" type="submit" name="Reset" value="Reset_">

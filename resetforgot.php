@@ -20,8 +20,8 @@
     <body style="background-color: white">
     <form method="post" action="includes/resetf.php">
         <input type="hidden" name="token" value="$token">
-        <input type="text" name="password1" placeholder="Please Enter Password">
-        <input type="text" name="password2" placeholder="Please Confirm Password">
+        <input type="password" name="password1" placeholder="Please Enter Password" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
+        <input type="password" name="password2" placeholder="Please Confirm Password" minlength="6" pattern="(?=\S*\d)(?=\S*[a-z])(?=\S*[A-Z])\S*" title="password must contain at least 1 uppercase, lowercase, digit, special character">
         <input style="width:100px;background-color:green;" type="submit" name="Register" value="reset">
     </form>
     <?php
